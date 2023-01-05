@@ -4,12 +4,12 @@ import uuid
 from didcomm.pack_encrypted import pack_encrypted, PackEncryptedConfig, PackEncryptedResult
 from didcomm.common.resolvers import ResolversConfig
 from didcomm.unpack import UnpackResult
-from importlib_metadata import metadata
 from didcomm_v2.peer_did import get_secret_resolver
 from didcomm_v2.peer_did import DIDResolverPeerDID
 from db_utils import store_short_url, expire_short_url
 import datetime
 import os
+from didcomm_v2.send_http_message import send_http_msg
 
 async def process_shorten_url_message(unpack_msg: UnpackResult, remote_did, local_did, from_prior: FromPrior):
     if unpack_msg.message.type == "https://didcomm.org/shorten-url/1.0/request-shortened-url":
@@ -60,7 +60,7 @@ async def process_shortened_url_request(unpack_msg: UnpackResult, remote_did, lo
             sign_frm=None,
             pack_config=PackEncryptedConfig(protect_sender_id=False)
         )
-        return response_packed.packed_msg
+        await send_http_msg(response_packed, remote_did, local_did)
     else:
         # TODO Report Problem
         return
@@ -88,4 +88,4 @@ async def process_invalidate(unpack_msg: UnpackResult, remote_did, local_did, fr
         sign_frm=None,
         pack_config=PackEncryptedConfig(protect_sender_id=False)
     )
-    return response_packed.packed_msg
+    await send_http_msg(response_packed, remote_did, local_did)

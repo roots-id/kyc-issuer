@@ -168,3 +168,7 @@ secrets_resolver = SecretsResolverMongo()
 def get_secret_resolver():
     """ Secret Resolver singleton"""
     return secrets_resolver
+
+def resolve_peer_did(did: DID) -> DIDDoc:
+    """ Helper function to resolve a Peer DID """
+    return DIDResolverPeerDID().resolve(did)

@@ -7,7 +7,7 @@ import datetime
 from didcomm.message import Attachment, AttachmentDataJson
 from blockchains.prism import issue_prism_credential
 import json
-from jose import jws
+# from jose import jws
 
 
 

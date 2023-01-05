@@ -73,19 +73,9 @@ async def receive_message(request: Request):
         raise HTTPException(status_code=400, detail='Malformed Message')
     else:
         print(unpack_msg.message.type)
-        resp = await message_dispatch(unpack_msg)
-        if resp:
-            return json.loads(resp)
-        else:
-            return
-        
-
-            # if {"return_route": "all"} in unpack_msg.message.custom_headers 
-            # or {"return_route": "thread"} in unpack_msg.message.custom_headers:
-            #   print("response inline")
-            #   return response_packed.packed_msg
-            # else:
-            #   print("send in another thread")
+        await message_dispatch(unpack_msg)
+        # no return route supported, so allways return 202
+        return
 
 
 @app.get("/oob_qrcode")

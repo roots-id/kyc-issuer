@@ -132,4 +132,6 @@ dmypy.json
 docker-compose.yml
 prism-cli-v1.4.1/
 secrets.json
-
+invitationQR
+oob_qrcode.png
+oob_small_qrcode.png
