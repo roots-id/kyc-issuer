@@ -16,12 +16,7 @@ import uuid
 
 async def send_http_msg(packed_msg, to_did: str, from_did: str):
     """ Send a DIDComm message over HTTP """
-    print(from_did)
-    print(to_did)
     to_did_doc = json.loads(peer_did.resolve_peer_did(to_did))
-    print("#####################")
-    print(to_did_doc)
-    print("#####################")
     service_endpoint = to_did_doc["service"][0]["serviceEndpoint"]
 
     if type(service_endpoint) ==  str and service_endpoint.startswith("http"):
