@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.DS_Store
+docker-compose.yml
+prism-cli-v1.4.1/
+secrets.json
+
