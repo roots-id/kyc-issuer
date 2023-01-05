@@ -18,10 +18,9 @@ async def process_issue_credential_message(unpack_msg: UnpackResult, remote_did,
             return await process_request_credential(unpack_msg, remote_did, local_did, from_prior)
     elif unpack_msg.message.type == "https://didcomm.org/issue-credential/3.0/ack":
             print("Verifiable Credential acknowledged")
-            return
     elif unpack_msg.message.type == "https://didcomm.org/issue-credential/3.0/propose-credential":
             # TODO IMPLEMENT ERRORS
-            return "ERROR"
+            print("ERROR:", "Propose Credential not implemented")
 
 async def process_request_credential(unpack_msg: UnpackResult, remote_did, local_did, from_prior: FromPrior):    
     response_message = await issue_credential(unpack_msg, remote_did, local_did, from_prior)

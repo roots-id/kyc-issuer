@@ -14,9 +14,9 @@ def create_oob(did, url):
         "id": str(uuid.uuid4()),
         "from": did,
         "body": {
-            "goal_code": "request-mediate",
-            "goal": "Request Mediate",
-            "label": "Mediator",
+            "goal_code": "kyc-credential",
+            "goal": "Issue a KYC credential",
+            "label": "KYC-Issuer",
             "accept": [
                 "didcomm/v2"
             ],

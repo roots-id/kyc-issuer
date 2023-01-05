@@ -10,7 +10,7 @@ This Issuers implements the following protocols:
 * [HTTPS Transport](https://identity.foundation/didcomm-messaging/spec/#https)
 * [Trust Ping Protocol 2.0](https://identity.foundation/didcomm-messaging/spec/#trust-ping-protocol-20)
 * [Discover Features Protocol 2.0](https://identity.foundation/didcomm-messaging/spec/#discover-features-protocol-20)
-* [WACI PEx Issue Credential Protocol 3.0]()
+* [WACI PEx Issue Credential Protocol 3.0](https://didcomm.org/issue-credential/3.0/): only a subset was implemented, request-credential --> issue-credential
 * [Shorten URL Protocol 1.0]()
 
 ### ToDo's

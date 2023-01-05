@@ -14,12 +14,14 @@ import json
 async def issue_credential(unpack_msg: UnpackResult, remote_did, local_did, from_prior: FromPrior):
     # 1-Validate credential request
     # TODO validate if attachements and add multiple attachments
-    attachment = unpack_msg.message.attachments[0]
+    credential_attachment = unpack_msg.message.attachments[0]
+    selfie_attachment = unpack_msg.message.attachments[1]
+    card_id_attachment = unpack_msg.message.attachments[2]
     # TODO throw error if format is not supported
     # TODO validate options
     #if attachment.format == "aries/ld-proof-vc-detail@v1.0":
     if True:
-        vc_detail = attachment.data.json
+        vc_detail = credential_attachment.data.json
         credential = vc_detail["credential"]
         holder_did = credential["credentialSubject"]["id"]
         # THIS IS FOR DEMO PURPOSES
