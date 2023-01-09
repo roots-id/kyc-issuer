@@ -1,36 +1,58 @@
 import requests
 import os
+import base64
+from PIL import Image
+import io
 
 
-async def seersScan(personal_info, selfie, front, flow_id, processor_id, type):
+
+async def seersScan(personal_info, selfie:str, front:str):
     
     dataseers_api_key = os.environ["DATASEERS_API_KEY"]
+
+
+    f = open("/Users/rodo/Desktop/b64_temp.txt", "w")
+    f.write(selfie)
+    f.close()
+
+    f = open("/Users/rodo/Desktop/b64_temp.txt", "rb")
+    b64_bytes = f.read()
+    f.close()
+    img = Image.open(io.BytesIO(base64.decodebytes(b64_bytes)))
+    img.save('/Users/rodo/Desktop/selfie_temp.jpg' )
+
+    f = open("/Users/rodo/Desktop/b64_temp.txt", "w")
+    f.write(front)
+    f.close()
+
+    f = open("/Users/rodo/Desktop/b64_temp.txt", "rb")
+    b64_bytes = f.read()
+    f.close()
+    img = Image.open(io.BytesIO(base64.decodebytes(b64_bytes)))
+    img.save('/Users/rodo/Desktop/front_temp.jpg' )
+
     
     url = "https://demo.dataseers.ai/services/v2/seerscan"
     payload = {
         "first_name": personal_info["first_name"],
         "last_name": personal_info["last_name"],
-        "contact_number": personal_info["contact_number"],
-        "ssn": personal_info["ssn"],
-        "address_1": personal_info["address_1"],
-        "city": personal_info["city"],
-        "state": personal_info["state"],
-        "zip": personal_info["zip"],
+        "email": personal_info["email"],
         "flow_id": "001714",
         "processor_id": "5187",
         "type": "DocOnly"
     }
     files = {
-    "selfie": open('/Users/rodo/Desktop/dni.jpg', 'rb'),
-    "front": open('/Users/rodo/Desktop/dni.jpg', 'rb')
+    "front": open('/Users/rodo/Desktop/front_temp.jpg', 'rb'),
+    "selfie": open('/Users/rodo/Desktop/selfie_temp.jpg', 'rb'),
+
     }
     headers = {
         'api-key': dataseers_api_key}
 
     session = requests.Session()
     resp = session.post(url,headers=headers,data=payload, files=files)
-    print(resp.status_code)
-    print(resp.json())
+    print(resp.text)
+    return resp.json()
 
 
 

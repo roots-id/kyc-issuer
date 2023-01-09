@@ -59,7 +59,7 @@ export WOLFRAM_ALPHA_API_ID=ZZZZZZ // only for basicmessage demo (https://www.wo
 
 ### Runing the agent
 ```
-uvicorn main:app --reload
+uvicorn main:app --reload --host 0.0.0.0
 ```
 
 ## Build docker

@@ -2,7 +2,7 @@
 import datetime
 import uvicorn
 from fastapi import Request, FastAPI, HTTPException
-from fastapi.responses import FileResponse, Response, RedirectResponse
+from fastapi.responses import FileResponse, Response, RedirectResponse, HTMLResponse
 from didcomm.unpack import unpack
 from didcomm.common.resolvers import ResolversConfig
 from didcomm_v2.peer_did import create_peer_did
@@ -117,8 +117,24 @@ async def redirect_shortened_url(_oobid):
 
 
 @app.get("/")
-def health_check(_oob):
-    return
+def index():
+    html_content = """
+    <html>
+        <head>
+            <title>KYC Issuer</title>
+        </head>
+        <div>
+            <body>
+                <h1>KYC Issuer</h1>
+                <h3>Scan the QR code below with your Identity Wallet to start a verification process\n</h3>
+                <h3>and receive a verifiable credential provided by RootsID, Drisk.xyz and Dataseers.</h3>
+            <img src="/oob_small_qrcode" alt="QR code" width="500" height="500">
+        </body>
+        </div>
+
+    </html>
+    """
+    return HTMLResponse(content=html_content, status_code=200)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host=SERVER_IP, port=SERVER_PORT, reload=True)
