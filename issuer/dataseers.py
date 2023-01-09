@@ -11,25 +11,25 @@ async def seersScan(personal_info, selfie:str, front:str):
     dataseers_api_key = os.environ["DATASEERS_API_KEY"]
 
 
-    f = open("/Users/rodo/Desktop/b64_temp.txt", "w")
+    f = open("b64_temp.txt", "w")
     f.write(selfie)
     f.close()
 
-    f = open("/Users/rodo/Desktop/b64_temp.txt", "rb")
+    f = open("b64_temp.txt", "rb")
     b64_bytes = f.read()
     f.close()
     img = Image.open(io.BytesIO(base64.decodebytes(b64_bytes)))
-    img.save('/Users/rodo/Desktop/selfie_temp.jpg' )
+    img.save('selfie_temp.jpg' )
 
-    f = open("/Users/rodo/Desktop/b64_temp.txt", "w")
+    f = open("b64_temp.txt", "w")
     f.write(front)
     f.close()
 
-    f = open("/Users/rodo/Desktop/b64_temp.txt", "rb")
+    f = open("b64_temp.txt", "rb")
     b64_bytes = f.read()
     f.close()
     img = Image.open(io.BytesIO(base64.decodebytes(b64_bytes)))
-    img.save('/Users/rodo/Desktop/front_temp.jpg' )
+    img.save('front_temp.jpg' )
 
     
     url = "https://demo.dataseers.ai/services/v2/seerscan"
@@ -42,8 +42,8 @@ async def seersScan(personal_info, selfie:str, front:str):
         "type": "DocOnly"
     }
     files = {
-    "front": open('/Users/rodo/Desktop/front_temp.jpg', 'rb'),
-    "selfie": open('/Users/rodo/Desktop/selfie_temp.jpg', 'rb'),
+    "front": open('front_temp.jpg', 'rb'),
+    "selfie": open('selfie_temp.jpg', 'rb'),
 
     }
     headers = {
@@ -51,7 +51,9 @@ async def seersScan(personal_info, selfie:str, front:str):
 
     session = requests.Session()
     resp = session.post(url,headers=headers,data=payload, files=files)
-    print(resp.text)
+
+
+
     return resp.json()
 
 

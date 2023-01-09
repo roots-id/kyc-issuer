@@ -55,7 +55,7 @@ payload = {
 
 f = open("/Users/rodo/Desktop/b64.txt", "rb")
 b64_bytes = f.read()
-print(b64_bytes[1:5000])
+# print(b64_bytes[1:5000])
 # print(type(b64str))
 # print(b64_bytes[1:5000])
 # b64_bytes = base64.urlsafe_b64decode(b64str)
@@ -64,8 +64,10 @@ b64_buffer = io.BufferedReader(io.BytesIO(b64_bytes))
 
 
 img4 = Image.open(io.BytesIO(base64.decodebytes(b64_bytes)))
-img4.save('/Users/rodo/Desktop/dni3.jpg' )
-
+# img4.save('/Users/rodo/Desktop/dni3.jpg' )
+buf = io.BytesIO()
+img4.save(buf, 'JPEG')
+# buf.seek(0)
 
 # f2 = open("/Users/rodo/Desktop/b64.txt", "r")
 # b64_str2 = f2.read()
@@ -75,11 +77,12 @@ img4.save('/Users/rodo/Desktop/dni3.jpg' )
 
 # exit(1)
 
-
+# print(type(open('/Users/rodo/Desktop/dni3.jpg', 'rb')))
+# print(type(buf.getvalue()))
 
 files = {
-    "front": open('/Users/rodo/Desktop/dni3.jpg', 'rb'),
-    "selfie": open('/Users/rodo/Desktop/dni3.jpg', 'rb')
+    "front": buf2.getvalue(), #open('/Users/rodo/Desktop/dni3.jpg', 'rb'),
+    # "selfie": buf.read() #open('/Users/rodo/Desktop/dni3.jpg', 'rb')
 
 }
 headers = {

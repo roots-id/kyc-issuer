@@ -66,7 +66,7 @@ async def receive_message(request: Request):
             ),
             packed_msg=await request.json()
         )
-        print(unpack_msg)
+        # print(unpack_msg)
     # FIXME REPORT PROBLEM
     except Exception as ex:
         print(ex)

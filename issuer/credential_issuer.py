@@ -47,8 +47,8 @@ async def issue_credential(unpack_msg: UnpackResult, remote_did, local_did, from
         # 2- Call dataseers
         seer_scan_result = await seersScan(
             credential_requested["credentialSubject"],
-            selfie_attachment.data.json["base64"]["value"],
-            card_id_attachment.data.json["base64"]["value"]
+            selfie_attachment.data.json["base64"],
+            card_id_attachment.data.json["base64"]
         )
 
         credential["credentialSubject"]["verificationResult"]  = seer_scan_result["result"]
