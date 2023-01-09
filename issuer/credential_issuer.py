@@ -36,7 +36,7 @@ async def issue_credential(unpack_msg: UnpackResult, remote_did, local_did, from
             "issuanceDate": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ"),
             "credentialSubject": {
                 "id": credential_requested["credentialSubject"]["id"],
-                "name": credential_requested["credentialSubject"]["first_name"] + " " + credential_requested["credentialSubject"]["first_name"],
+                "name": credential_requested["credentialSubject"]["first_name"] + " " + credential_requested["credentialSubject"]["last_name"],
                 "first_name": credential_requested["credentialSubject"]["first_name"],
                 "last_name": credential_requested["credentialSubject"]["last_name"],
                 "email": credential_requested["credentialSubject"]["last_name"],
