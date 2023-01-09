@@ -43,8 +43,8 @@ export MONGODB_USER={MongoDB username}
 export MONGODB_PASSWORD={MongoDB password}
 export WOLFRAM_ALPHA_API_ID=ZZZZZZ // only for basicmessage demo (https://www.wolframalpha.com)
 export DATASEERS_API_KEY={DataSeers API KEY}
-export PRISM_SDK_PASSWORD="ghp_..."
-export ATALA_PRISM_JARS="<working_dir>/prism-cli-v1.4.1/lib"
+export PRISM_SDK_PASSWORD="ghp_..." // only if issuer is did:prism
+export ATALA_PRISM_JARS="<working_dir>/prism-cli-v1.4.1/lib" // only if issuer is did:prism
 ```
 
 ### Runing the agent
