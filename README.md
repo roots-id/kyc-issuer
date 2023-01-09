@@ -13,24 +13,11 @@ This Issuers implements the following protocols:
 * [WACI PEx Issue Credential Protocol 3.0](https://didcomm.org/issue-credential/3.0/): only a subset was implemented, request-credential --> issue-credential
 * [Shorten URL Protocol 1.0]()
 
-### ToDo's
-Pending features and known issues and missings can be found at the [issues]([issues](https://github.com/roots-id/didcomm-mediator/issues)) section in this repository.
-Note that this mediator is currently a **Proof of Concept**. Several `TODO`'s still pending in the code.
 
 ### Significant libraries
 DIDComm and Peer DID were implemented with the help of the following amazing libraries from SICPA:
 * [sicpa-dlab/didcomm-python](https://github.com/sicpa-dlab/didcomm-python)
 * [sicpa-dlab/peer-did-python](https://github.com/sicpa-dlab/peer-did-python)
-
-## RootsID Cloud instance live!
-We have deployed an instance of the mediator in the cloud for testing, demoing, and learning.
-Your identity wallet can scan the following Out of Band invitation QR code and request mediation:
-
-![QR Code](https://mediator.rootsid.cloud/oob_qrcode)
-
-Or scan the small QR code (OOB D) that redirect to the big one:
-
-![Small QR Code](https://mediator.rootsid.cloud/oob_small_qrcode)
 
 
 ### Installation
@@ -52,9 +39,12 @@ The following environmental variables are needed. Change the values as your need
 export DB_URL=mongodb://localhost:27017
 export PUBLIC_URL=http://127.0.0.1:8000
 export ROTATE_OOB=0  // rotate OOB at startup if set
-export MONGODB_USER=XXXXXX
-export MONGODB_PASSWORD=yyyyy
+export MONGODB_USER={MongoDB username}
+export MONGODB_PASSWORD={MongoDB password}
 export WOLFRAM_ALPHA_API_ID=ZZZZZZ // only for basicmessage demo (https://www.wolframalpha.com)
+export DATASEERS_API_KEY={DataSeers API KEY}
+export PRISM_SDK_PASSWORD="ghp_..."
+export ATALA_PRISM_JARS="<working_dir>/prism-cli-v1.4.1/lib"
 ```
 
 ### Runing the agent
@@ -64,9 +54,8 @@ uvicorn main:app --reload --host 0.0.0.0
 
 ## Build docker
 ```
-docker build -f ./Dockerfile . --platform=linux/amd64 -t rodopincha/didcomm-mediator
-docker push rodopincha/didcomm-mediator 
-docker run -p 8000:8000 rodopincha/didcomm-mediator
+docker build -f ./Dockerfile .  -t kyc-issuer
+docker run -p 8000:8000 kyc-issuer
 ```
 
 ## ATALA Prism Credential Issuer

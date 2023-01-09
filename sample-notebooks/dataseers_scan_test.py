@@ -27,12 +27,12 @@ payload = {
 
 
 
-# selfie = base64.b64encode(open('/Users/rodo/Desktop/dni.jpg', 'rb').read())
-# base64_utf8_str = base64.b64encode(selfie).decode('utf-8')
-# b64_bytes = base64.b64decode(base64_utf8_str)
-# b64_buffer = io.BufferedReader(io.BytesIO(b64_bytes))
-# img4 = Image.open(io.BytesIO(base64.decodebytes(b64_bytes)))
-# img4.save('/Users/rodo/Desktop/dni3.jpg' )
+selfie = base64.b64encode(open('/Users/rodo/Desktop/dni.jpg', 'rb').read())
+base64_utf8_str = base64.b64encode(selfie).decode('utf-8')
+b64_bytes = base64.b64decode(base64_utf8_str)
+b64_buffer = io.BufferedReader(io.BytesIO(b64_bytes))
+img4 = Image.open(io.BytesIO(base64.decodebytes(b64_bytes)))
+img4.save('/Users/rodo/Desktop/dni3.jpg' )
 
 
 # selfie = base64.b64encode(open('/Users/rodo/Desktop/dni.jpg', 'rb').read())
@@ -75,10 +75,6 @@ img4.save(buf, 'JPEG')
 # print(bg4_bytes2[1:5000])
 
 
-# exit(1)
-
-# print(type(open('/Users/rodo/Desktop/dni3.jpg', 'rb')))
-# print(type(buf.getvalue()))
 
 files = {
     "front": buf2.getvalue(), #open('/Users/rodo/Desktop/dni3.jpg', 'rb'),
@@ -105,13 +101,3 @@ print("-------------------------------------")
 
 pp(resp.json()["image_metrics_result"])
 print("-------------------------------------")
-
-
-# selfie = encoded_string = base64.b64encode(open('/Users/rodo/Desktop/dataseers.png', 'rb').read())
-# # img1 = base64.decodebytes(selfie)
-
-
-# picture = open('/Users/rodo/Desktop/dataseers.png', 'rb')
-# print(picture.read())
-
-# base64.decodebytes(selfie)

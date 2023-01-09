@@ -12,7 +12,6 @@ from didcomm_v2.message_dispatch import message_dispatch
 from protocols.oob import create_oob
 from db_utils import get_oob_did, store_oob_did, get_issuer_did, store_issuer_did, get_short_url
 import os
-import json
 if "PRISM_ISSUER" in os.environ and os.environ["PRISM_ISSUER"]=="1":
     from blockchains.prism import create_prism_did
 

@@ -52,7 +52,9 @@ async def seersScan(personal_info, selfie:str, front:str):
     session = requests.Session()
     resp = session.post(url,headers=headers,data=payload, files=files)
 
-
+    # Remove files for PII
+    os.remove('front_temp.jpg')
+    os.remove('selfie_temp.jpg')
 
     return resp.json()
 

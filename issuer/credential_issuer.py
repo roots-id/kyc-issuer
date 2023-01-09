@@ -5,7 +5,7 @@ from didcomm.unpack import UnpackResult
 from db_utils import get_issuer_did
 import datetime
 from didcomm.message import Attachment, AttachmentDataJson
-from blockchains.prism import issue_prism_credential
+# from blockchains.prism import issue_prism_credential
 from .dataseers import seersScan
 import json
 
